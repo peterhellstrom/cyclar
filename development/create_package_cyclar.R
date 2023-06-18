@@ -25,6 +25,8 @@ devtools::test()
 # Document data:
 # https://r-pkgs.org/data.html
 
+install_github("peterhellstrom/cyclar")
+
 ## Load package ----
 library(cyclar)
 
