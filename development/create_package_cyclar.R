@@ -14,7 +14,6 @@ usethis::use_mit_license()
 
 use_git_config(user.name = "peterhellstrom", user.email = "peter.hellstrom@nrm.se")
 
-
 devtools::load_all()
 
 # Must run document() to add export functions to NAMESPACE
