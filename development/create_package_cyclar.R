@@ -8,7 +8,8 @@ p <- "W:/PROJEKT/R/cyclar"
 usethis::create_github_token()
 
 usethis::use_git()
-usethis::use_github_links()
+usethis::use_github()
+# GitHub API error (401): Bad credentials
 usethis::use_mit_license()
 
 use_git_config(user.name = "peterhellstrom", user.email = "peter.hellstrom@nrm.se")
