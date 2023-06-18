@@ -1,0 +1,5 @@
+Notation difference
+
+Tulja	t-1 => t
+
+Caswell	t => t+1

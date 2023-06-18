@@ -1,0 +1,32 @@
+model {
+
+tau.data ~ dgamma(0.001,0.001);
+sigma.data <- 1/sqrt(tau.data);
+
+tau.smooth1 ~ dgamma(0.01,0.01);
+sm1 <- 1/sqrt(tau.smooth1);
+tau.smootha0 <- 400;
+
+# The autoregressive model with time-varying parameters
+
+for ( i in 1:ntime ) {
+	a1[i] ~ dunif(-100,100);
+	a2[i] ~ dunif(-100,100);
+
+	growth[i] ~ dnorm(mu[i], tau.data);
+	mu[i] <- a1[i] * lag1[i] + a2[i] * lag2[i];
+	}
+}
+
+# calculate the first-differences:
+for ( q in 2:(ntime-1) ) {
+	diffa1[q] <- 2*a1[q] - a1[q-1] - a1[q+1];
+	diffa2[q] <- 2*a2[q] - a2[q-1] - a2[q+1];
+	}
+
+# penalize the first-differences:
+for ( qr in 1:(ntime-2) ) {
+	rep01[qr] ~ dnorm(diffa1[qr], tau.smooth1);
+	rep02[qr] ~ dnorm(diffa2[qr], tau.smooth1);
+	}
+}

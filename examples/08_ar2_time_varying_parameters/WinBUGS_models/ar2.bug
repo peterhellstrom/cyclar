@@ -1,0 +1,12 @@
+model {
+
+tau.data ~ dgamma(0.001,0.001)
+sigma.data <- 1/sqrt(tau.data)
+
+for (i in 1:ntime) {
+	mu[i] <- a1*lag1[i] + a2*lag2[i]
+	growth[i] ~ dnorm(mu[i], tau.data)
+}
+	a1 ~ dunif(-100,100)
+	a2 ~ dunif(-100,100)
+}

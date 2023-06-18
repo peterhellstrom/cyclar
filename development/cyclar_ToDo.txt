@@ -1,0 +1,46 @@
+*** Updated 2013-11-15 ***
+
+Continue update of simulation, estimation.
+
+Simulation: check various approaches: filtering, recursive
+Add trends a la Lindström & Forchhammer (p. 58, OUP book).
+Can such trends be simulated directly with arima.sim?
+- ARIMA models with trend? Add trend to AR2 model. See Fromentin et al.
+- arima.sim model formulation, mu & Intercept?
+- Generation of AR2 data - innovations?
+- SETAR (package tsDyn)
+- Ricker model with two lags - simulation
+- Seasonal AR(2)
+
+Estimation:
+-fit ar-model with xreg argument - allow covariates?
+-OLS regression, Y-W and GLS?
+
+- The relationship between xt and Rt, and how to fit models with first differenced series.
+
+
+# Simulate several patches & estimate parameters
+# Multiple time series.
+# Use gls or lme if possible
+# Vector autoregression models? Transfer functions?
+
+A) Correlation structure
+- Observations within patch, temporal autocorrelation
+	1) Lagged regression with gls, correlation between residuals
+	specified as ARMA(2,0) at deepest level
+- Observations between patches, spatial autocorrelation (& temporal?)
+	1) Same correlation structure for all patches (covariance matrix; general correlation or compund symmetric).
+	2) Several structures available (variogram-based)
+
+B) Variance structure
+- Variance structure - per patch, specified with weights-argument:
+	1) all equal
+	2) varIdent
+	3) varComb, per series & along time
+
+Q: How can allow for both spatial- and temporal structure in the same analysis?
+
+
+# Check this
+# Added 2020-11-18
+https://fish-forecast.github.io/Fish-Forecast-Bookdown/index.html
