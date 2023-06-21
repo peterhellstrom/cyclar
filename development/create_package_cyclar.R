@@ -3,17 +3,17 @@
 library(devtools)
 library(usethis)
 
-p <- "W:/PROJEKT/R/cyclar"
+p <- "W:/projects/R/cyclar"
 #usethis::create_package(p, check_name = FALSE)
-usethis::create_github_token()
 
-usethis::use_git()
-usethis::use_github()
-# GitHub API error (401): Bad credentials
 usethis::use_mit_license()
 
 use_git_config(user.name = "peterhellstrom", user.email = "peter.hellstrom@nrm.se")
+usethis::use_git()
+usethis::use_github()
+# GitHub API error (401): Bad credentials
 
+usethis::create_github_token()
 devtools::load_all()
 
 # Must run document() to add export functions to NAMESPACE
