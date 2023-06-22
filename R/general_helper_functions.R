@@ -14,11 +14,6 @@ central <- function(x) {
 	cat("Range from",round(c5[1],5), "to", round(c5[2],5),"\n")
 }
 
-# cv
-# x = a (time) series
-
-cv <- function(x) sd(x) / abs(mean(x))
-
 # covmat
 # Generate a diagonal covariance matrix, i.e. independence between the columns of z,
 # with non-zero off-diagonal terms
