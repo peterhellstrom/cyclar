@@ -31,6 +31,8 @@ install_github("peterhellstrom/cyclar")
 library(cyclar)
 
 ## Data sets ----
+usethis::use_data_raw()
+
 lynx_elton
 timetk::tk_tbl(lynx_elton, rename_index = "year")
 
