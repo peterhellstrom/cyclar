@@ -1,7 +1,9 @@
 # https://r-pkgs.org
 
+library(devtools)
+
 p <- "W:/projects/R/cyclar"
-#usethis::create_package(p, check_name = FALSE)
+# usethis::create_package(p, check_name = FALSE)
 
 usethis::use_mit_license()
 
@@ -36,7 +38,6 @@ usethis::use_data_raw()
 lynx_elton
 timetk::tk_tbl(lynx_elton, rename_index = "year")
 
-
 rodents <- rodents |>
   janitor::clean_names() |>
   dplyr::rename(year = ar, season = arstid) |>
@@ -44,8 +45,10 @@ rodents <- rodents |>
     season_text = dplyr::case_when(
       season == 2 ~ "fall",
       season == 1 ~ "spring",
-      TRUE ~ NA_character_)) |>
-  dplyr::relocate(season_text, .after = season)
+      TRUE ~ NA_character_
+    ),
+    .after = season
+  )
 
 rodents |>
   dplyr::filter(site == "sf")
@@ -55,5 +58,3 @@ rodents_long |>
   dplyr::rename(year = ar, season = arstid)
 
 voles_kilpis
-
-
