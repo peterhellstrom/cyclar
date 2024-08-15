@@ -1,6 +1,5 @@
-################################################################################
 library(cyclar)
-################################################################################
+
 # Two functions that generates equally spaced parameter values for (1+a1) & a2.
 # ar2.k.gen = for k-contours (quasi-period)
 # ar2.v.gen = for v-contours (intrinsic process variance)
@@ -46,8 +45,6 @@ ar2.plot(k=k,v=NULL)
 points(p$phi1,p$phi2,col=2,pch=16)
 diff(p$phi2) # constant
 
-
-
 # For method="x", use by as argument in k.gen (if you want exactly the same spacing between x (1+a1) for different values of k).
 # Method x
 k <- 7
@@ -79,8 +76,7 @@ points(p$phi1,p$phi2,col=2,pch=16)
 length(p$phi1)
 diff(p$phi1)
 
-################################################################################
-# Test ar2.v.gen
+# Test ar2.v.gen ----
 
 n <- 20
 v <- 4
@@ -91,7 +87,6 @@ points(p$phi1,p$phi2,col=2,pch=16)
 length(p$phi1)
 diff(p$phi1)
 diff(p$phi2) # constant
-
 
 n <- 50
 v <- 4

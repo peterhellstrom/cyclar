@@ -1,9 +1,8 @@
-################################################################################
 library(cyclar)
-################################################################################
 
 # Check/draw ACF for a stationary AR(2)-process in the region with complex roots
-k <- 5; v <- 4
+k <- 5
+v <- 4
 p <- ar2.parms(k=k, v=v, output=list)
 ar2.acf(a1=p$a1, a2=p$a2)
 
@@ -31,7 +30,6 @@ curve(f.acf(x=x,phi1=0,phi2=-0.7), from=0, to=40, n=1001, xlab="lag", ylab="acf"
 
 parms <- list(phi1=0, phi2=-0.7)
 z <- fderiv(f=f.acf, parms=parms, tangent=FALSE)
-
 
 
 phi1 <- 0

@@ -1,6 +1,4 @@
-################################################################################
 library(cyclar)
-################################################################################
 
 # Find parameters for a given period (k) & intrinsic process variance (v).
 # I have implemented this in cyclar with the common root finding technique.
@@ -101,15 +99,12 @@ for (i in 1:length(v)) curve(f.root(x=x,k=k,v=v[i]),col=v[i],from=-1,to=0,add=TR
 points(p$a2,rep(0,length(v)),col=v,pch=16)
 legend("bottomright",legend=v,col=v,lty=1,bty="n",cex=0.8,title="v")
 
-################################################################################
-
 # Check that input parameters can be retrieved
 k <- 3:10
 v <- rep(7,length(k))
 p <- ar2.parms(k=k,v=v,formula=TRUE,par.name="Omega",cex.contours=0.7)
 ar2.period(p$a1,p$a2) # check, should equal vectors k & v
 
-################################################################################
 
 # Compare with previous function ar2.parms.old
 ar2.parms.old(k=5,v=3)
@@ -126,7 +121,6 @@ p2 <- ar2.parms.old(k=k,v=v,plot=TRUE,output=cbind)
 p1; p2
 all.equal(p1,p2,tol=0)
 
-
 v <- seq(1.5,10,0.25)
 k <- runif(n=length(v),min=2,max=10)
 
@@ -134,5 +128,3 @@ system.time(p3 <- ar2.parms(k=k,v=v,plot=TRUE,list=FALSE,cex.contours=0.7))
 system.time(p4 <- ar2.parms.old(k=k,v=v,plot=TRUE,output=cbind,cex.contours=0.7))
 p3; p4
 all.equal(p3,p4,tol=0)
-
-################################################################################
