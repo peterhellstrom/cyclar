@@ -1,4 +1,5 @@
 library(cyclar)
+devtools::load_all()
 
 # Find AR(2)-parameters
 k <- c(3, 4, 5, 6, 7, 8) # Periodicity
@@ -83,7 +84,10 @@ ar2.plot(k = c(3,5), v = 7, kcol = 8, vlty = 1, vcol = "steelblue", vlab = TRUE,
 p <- ar2.parms(k = 8, v = 5, plot = FALSE)
 ar2.period(p$a1,p$a2)
 #png(filename = "DarkSide.png", res = 800, units = "in", width = 8, height = 4, pointsize = 11)
-ar2.dsotm(a1 = p$a1, a2 = p$a2, n = 200, main = "Ticking away the moments that make up a dull day")
+ar2.dsotm(
+  a1 = p$a1, a2 = p$a2, n = 200,
+  main = "Ticking away the moments that make up a dull day"
+)
 
 #### TEST contour functions ####
 # Five functions for each kontour (k & v)
@@ -193,20 +197,19 @@ ar2.plot(k = NULL,v = 6,kcontours = FALSE,klab = FALSE)
 
 for (i in 1:length(k)) {
 
-	p <- ar2.parms(k = k[i], v = v)
-	a1 <- p$a1
-	a2 <- p$a2
-	curve(f(a1 = x-1,k = k[i]),col = i,add = T)
-	points(1+a1,a2,pch = 16,col = 2)
-	points(-(1+a1),a2,pch = 16,col = 2)
+  p <- ar2.parms(k = k[i], v = v)
+  a1 <- p$a1
+  a2 <- p$a2
+  curve(f(a1 = x-1,k = k[i]),col = i,add = T)
+  points(1+a1,a2,pch = 16,col = 2)
+  points(-(1+a1),a2,pch = 16,col = 2)
 
-	a1.pos <- ar2.period(a1,a2)
-	a1.neg <- ar2.period(-a1-2,a2)
+  a1.pos <- ar2.period(a1,a2)
+  a1.neg <- ar2.period(-a1-2,a2)
 
-	text(x = 2*cos(2*pi/a1.pos[,"period"]), y = -1, labels = round(a1.pos[,"period"],2), font = 2, cex = 1,col = 2)
-	text(x = 2*cos(2*pi/a1.neg[,"period"]), y = -1, labels = round(a1.neg[,"period"],2), font = 2, cex = 1,col = 4)
+  text(x = 2*cos(2*pi/a1.pos[,"period"]), y = -1, labels = round(a1.pos[,"period"],2), font = 2, cex = 1,col = 2)
+  text(x = 2*cos(2*pi/a1.neg[,"period"]), y = -1, labels = round(a1.neg[,"period"],2), font = 2, cex = 1,col = 4)
 }
-
 
 #### Generate "uniformly" distributed a1 and a2 values ####
 n <- 10000
@@ -214,16 +217,16 @@ out <- matrix(ncol = 2, nrow = n)
 colnames(out) <- c("a1", "a2")
 
 for (i in 1:n) {
-	x <- runif(1, -2, 2) # (1+a1)
-	a2.max <- -0.25*x^2
-	a2 <- runif(1, -1, a2.max)
-	out[i,] <- c(a1 = x-1,a2 = a2)
+  x <- runif(1, -2, 2) # (1+a1)
+  a2.max <- -0.25*x^2
+  a2 <- runif(1, -1, a2.max)
+  out[i,] <- c(a1 = x-1,a2 = a2)
 }
 
 ar2.plot.simple()
 points(1+out[,"a1"],out[,"a2"],pch = 16,col = 2)
 
 par(mfrow = c(1,2))
-	hist(1+out[,"a1"], col = "steelblue", breaks = 30, main = "(1+a1)")
-	hist(out[,"a2"], col = "steelblue", breaks = 30, main = "a2")
+hist(1+out[,"a1"], col = "steelblue", breaks = 30, main = "(1+a1)")
+hist(out[,"a2"], col = "steelblue", breaks = 30, main = "a2")
 par(mfrow = c(1,1))

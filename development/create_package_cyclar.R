@@ -2,22 +2,21 @@
 
 library(devtools)
 
-p <- "W:/projects/R/cyclar"
+# p <- "W:/projects/R/cyclar"
 # usethis::create_package(p, check_name = FALSE)
 
-usethis::use_mit_license()
-
-use_git_config(user.name = "peterhellstrom", user.email = "peter.hellstrom@nrm.se")
-usethis::use_git()
-usethis::use_github()
+# usethis::use_mit_license()
+#
+# use_git_config(user.name = "peterhellstrom", user.email = "peter.hellstrom@nrm.se")
+# usethis::use_git()
+# usethis::use_github()
 # GitHub API error (401): Bad credentials
 
-create_github_token()
+# create_github_token()
 load_all()
 
 # Must run document() to add export functions to NAMESPACE
 document()
-install()
 
 test()
 
@@ -26,6 +25,9 @@ use_build_ignore(c("data-raw", "development", "examples"))
 
 # Document data:
 # https://r-pkgs.org/data.html
+
+# Install ----
+install()
 
 install_github("peterhellstrom/cyclar")
 
